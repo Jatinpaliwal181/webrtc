@@ -17,8 +17,8 @@ function getCredential(formValues, callback, err) {
         );
 
         var poolData = {
-            UserPoolId: '<User Pool ID>', // Your user pool id here
-            ClientId: '<App Client ID>', // Your client id here
+            UserPoolId: 'ap-south-1_GHmb5LhJI', // Your user pool id here
+            ClientId: '67plcnugm51mbp64vadlo03i58', // Your client id here
         };
         var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
@@ -39,10 +39,10 @@ function getCredential(formValues, callback, err) {
                 AWS.config.region = formValues.region;
 
                 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                    IdentityPoolId: '<Identity Pool ID>', // your identity pool id here
+			IdentityPoolId: 'ap-south-1:91310894-ade6-4811-b4d2-ddbbef8539e4', // your identity pool id here
                     Logins: {
                         // Change the key below according to the specific region your user pool is in.
-                        'cognito-idp.<region>.amazonaws.com/<User Pool ID>': result
+                        'cognito-idp.ap-south-1.amazonaws.com/ap-south-1_GHmb5LhJI': result
                             .getIdToken()
                             .getJwtToken(),
                     },
@@ -211,7 +211,7 @@ async function postViewerLogin(localView, remoteView, formValues, onStatsReport,
     });
 
     viewer.signalingClient.on('error', error => {
-        console.error('[VIEWER] Signaling client error: ', error);
+        console.error('[VIEWER] Signaling client error: '+ error);
     });
 
     // Send any ICE candidates to the other peer
